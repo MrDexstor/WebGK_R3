@@ -9,4 +9,6 @@ urlpatterns = [
     path('menu/', include('Apps.menu.urls')),
     # Товарооборот и товары
     path('products/', include('Apps.products.urls')),
+    # Сессии и пользователи
+    path('session/', include('Apps.session.urls')),
 ]

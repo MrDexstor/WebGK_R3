@@ -1,13 +1,30 @@
 import json
 from django import shortcuts
 
-def render(request, page_config, template_name, context={}):
-    context['page'] = page_config.build()
-    return shortcuts.render(request, template_name, context)
-    
-
 def redirect(*args, **kwargs):
     return shortcuts.redirect(*args, **kwargs)
+    
+    
+def render(request, page_config, template_name, context={}, accept_level = 'user'):
+#accept_level = user | all | guest
+    context['page'] = page_config.build()
+    
+    if accept_level == 'user':
+        if request.user.is_authenticated:
+            return shortcuts.render(request, template_name, context)
+        else:
+            return redirect('/GK/session/login/')
+    elif accept_level == 'all':
+        return shortcuts.render(request, template_name, context)
+    elif accept_level == 'guest':
+        if request.user.is_authenticated:
+            return redirect('/GK/')
+        else:
+            return shortcuts.render(request, template_name, context)
+    else:
+        # Логгировать ошибку ядра
+        pass
+    
     
 
 class Page:
