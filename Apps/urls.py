@@ -11,4 +11,7 @@ urlpatterns = [
     path('products/', include('Apps.products.urls')),
     # Сессии и пользователи
     path('session/', include('Apps.session.urls')),
+    # Инструменты
+    path('tools/', include('Apps.tools.urls')),
+    
 ]
