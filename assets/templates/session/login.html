@@ -1,0 +1,17 @@
+{% extends 'Core/blank_template.html' %}
+{% block root %}
+<style>
+    body{
+        background-image: url('/static/image/login_pageBG.png');
+    }
+</style>
+<div class="form-section">
+   <h3>Вход в WebGK</h3>
+   <div class="form-group">
+       <form class="form-group" action="" method="get" accept-charset="utf-8">
+           <input type="text" name="login" id="login" value="" />
+           <input type="password" name="password" id="password" value="" />
+       </form>
+   </div>
+</div>
+{% endblock %}
