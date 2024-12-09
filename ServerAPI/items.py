@@ -17,7 +17,7 @@ def item__info(request, plu, info_level='deep'):
     else:
         pass
     
-    response = requests.get(url, headers=gk.getHeader(request.user))
+    response = requests.get(url, headers=BOm.getHeader(request.user))
     data ={}
     if response.status_code == 404:
         pass
@@ -32,7 +32,7 @@ def item__info(request, plu, info_level='deep'):
 @session_check
 def item__movements(request, plu):
     url = f'{BO_Url()}/api/item/{plu}/movements'
-    response = requests.get(url, headers=gk.getHeader(request.user))
+    response = requests.get(url, headers=BOm.getHeader(request.user))
     data ={}
     if response.status_code == 404:
         pass
@@ -47,7 +47,7 @@ def item__movements(request, plu):
 @session_check
 def item__plg(request, plu):
     url = f'{BO_Url()}/api/item/{plu}/planogram'
-    response = requests.get(url, headers=gk.getHeader(request.user))
+    response = requests.get(url, headers=BOm.getHeader(request.user))
     data ={}
     if response.status_code == 404:
         pass
@@ -82,7 +82,7 @@ def search(request,  itemIds= None, nameContains= None, tradeGroup = None ,limit
     else:
         search_filter['limit'] = 15
     # Обработка запроса
-    response = requests.get(url, headers=gk.getHeader(request.user), params = search_filter)
+    response = requests.get(url, headers=BOm.getHeader(request.user), params = search_filter)
     data ={}
     if response.status_code == 404:
         pass

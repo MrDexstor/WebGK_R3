@@ -1,0 +1,54 @@
+{% extends 'Core/app_template.html' %}
+{% load static %}
+{% block main_content %}
+
+<div class="document-card">
+    <div class="document-title">
+        <span class="document-id">
+            {{ off.name }}
+        </span>
+        <span class="document-data">
+            {{ off.comment }}
+        </span>
+    </div>
+</div>
+<div class="table-container">
+    <h3>Документ списания в GK</h3>
+    <table>
+        <theader>
+            <td>PLU</td>
+            <td>Наименование</td>
+            <td>Цена, ₽</td>
+            <td>Количество, уе</td>
+            <td>Остаток, уе</td>
+            <td>Сумма, ₽</td>
+        </theader>
+        {% for item in positions %}
+        <tr>
+            <td>{{ item.article }}</td>
+            <td>{{ item.itemName }}</td>
+            <td>{{ item.unitPrice }}</td>
+            <td>{{ item.countedQuantity }}</td>
+            <td>{{ item.stockQuantity }}</td>
+            <td>{{ item.totalSum }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="table-container">
+    <h3>Документ постановки на остаток в GK</h3>
+    <table>
+        <theader>
+            <td>PLU</td>
+            <td>Наименование</td>
+            <td>Цена, ₽</td>
+            <td>Количество, уе</td>
+            <td>Сумма, ₽</td>
+        </theader>
+        
+    </table>
+</div>
+
+
+{% endblock %}
