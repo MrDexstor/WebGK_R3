@@ -13,7 +13,7 @@ def docPanel(request, id):
     doc = write_offs.offsData(request, id)
     write_offs_positions = write_offs.positions(request, doc["id"])
     page = Page('FDPP | WebGK', 'Списание товара доставки', f'{doc["docNumber"]}')
-    page.returnUrl('/GK/tools/FPDD/')
+    page.returnUrl('/GK/tools/fpdd/')
     return render(request, page, 'tools/fpdd/doc_panel.html', {"off": doc, "positions": write_offs_positions})
     
  
