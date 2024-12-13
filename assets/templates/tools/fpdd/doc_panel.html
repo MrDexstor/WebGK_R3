@@ -73,57 +73,5 @@
     {% endif %}
 </div>
 
-<!-- Модальное окно -->
-<div class="modal fade" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="responseModalLabel">Ответ</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p id="responseMessage"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Элемент загрузки -->
-<div id="loading" style="display: none;">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-
-
-<script src="{% static 'js/jquery.js' %}"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script>
-    $(document).ready(function() {
-        $('.generate-button').click(function() {
-            var url = $(this).data('url');
-            $('#loading').show();
-
-            $.ajax({
-                url: url,
-                method: 'GET',
-                success: function(response) {
-                    $('#loading').hide();
-                    $('#responseMessage').text(response.message);
-                    $('#responseModal').modal('show');
-                },
-                error: function(xhr, status, error) {
-                    $('#loading').hide();
-                    $('#responseMessage').text('Произошла ошибка: ' + error);
-                    $('#responseModal').modal('show');
-                }
-            });
-        });
-    });
-</script>
 {% endblock %}

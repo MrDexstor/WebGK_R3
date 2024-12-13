@@ -46,6 +46,14 @@ def docPanel(request, id):
  
 def createLocal(request, id):
     writeoffs = write_offs.offsData(request, id)
-    
+    WO_positions = write_offs.positions(request, id)
+    order_id = writeoffs['name'].split('азу ')[1]
+
+
     #2. Создать ЛИ с определёнными данными
+    li_req = localInventory.createDoc(request, f'....: {order_id}')
+
+
+
+
     #3. Добавить позиции

@@ -11,21 +11,6 @@ def getList(request):
     url = f'{BO_Url()}/api/write-offs'
     response = requests.get(url, headers=BOm.getHeader(request.user))
     return response.json()
-    
-    
-def createDoc(request, docName):
-    url = f'{BO_Url()}/api/local-inventories'
-    current_datetime = datetime.now()
-    formatted_datetime = current_datetime.strftime("%d.%m.%Y %H:%M:%S")
-    
-    LIconf = {
-        "creationDateTime":formatted_datetime,
-        "name":docName
-        
-    }
-    response = requests.post(url, headers=BOm.getHeader(request.user), json=LIconf)
-    
-    return response.json()
 
 
 @server_avalible('write-offs-docinfo')
