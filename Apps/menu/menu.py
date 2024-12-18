@@ -18,7 +18,7 @@ def tools(request):
     menu = MasterMenu()
     menu.add('Печать ценников', '/GK/', '/static/icon/colored/price-tag.png')
     menu.add('Печать этикеток (QR)', '/GK/tools/FPDD/', '/static/icon/colored/label.png')
-    menu.add('Передача файлов', '/GK/', '/static/icon/colored/file-transfer.png')
+    menu.add('Файлы', '/GK/files/', '/static/icon/colored/file-transfer.png')
     menu.add('Печать документа', '/GK/', '/static/icon/colored/print.png')
     menu.add('Фиктивная проводка документов доставки', '/GK/tools/FPDD/', '/static/icon/colored/storno.png', '80')
     menu.add('Доступность (Проводка)', '/GK/tools/accessibility/', '/static/icon/colored/accessibility.png', '0')
