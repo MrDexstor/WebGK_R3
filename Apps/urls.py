@@ -13,5 +13,8 @@ urlpatterns = [
     path('session/', include('Apps.session.urls')),
     # Файлы и файловый обмен
     path('files/', include('Apps.files.urls')),
+    # Инструменты
+    path('tools/', include('Apps.tools.urls')),
+
     
 ]
