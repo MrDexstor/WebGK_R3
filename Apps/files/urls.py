@@ -4,5 +4,7 @@ urlpatterns = [
     # База со списком всех файлов
     path('', main.board),
     # Добавление файла
-    path('upload/', main.upload)
+    path('upload/', main.upload),
+    # Скачивание сохранённого файла
+    path('download/<str:filename>', main.download)
 ]
