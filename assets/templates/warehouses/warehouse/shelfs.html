@@ -45,8 +45,11 @@
     </style>
 {% endblock %}
 {% block main_content %}
+    
     <a href="/GK/warehouses/{{ warehouse.id }}/shelves/create/" class="create-shelf-link">Создать полку</a>
     <a href="/GK/warehouses/{{ warehouse.id }}/registry/" class="create-shelf-link">Реестр склада</a>
+    <a href="/GK/warehouses/{{ warehouse.id }}/update_global_stock/" class="create-shelf-link">Синхронизировать глобальные  остатки (Занимает время)</a>
+    <br>
     <table class="custom-table">
         <tr>
             <th>ID</th>
