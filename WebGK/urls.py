@@ -9,5 +9,6 @@ def main(request):
 urlpatterns = [
     path('', main),
     path('GK/', include('Apps.urls')),
+    path('gkapi/', include('WGKApi.urls')),
     path('admin/', admin.site.urls),
 ]

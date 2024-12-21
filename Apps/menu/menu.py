@@ -9,7 +9,7 @@ def turnover(request):
     menu.add('Локальная инвентаризация', '/GK/inventory/local/', '/static/icon/colored/inventory.png', '80')
     menu.add('Списания', '/GK/write-offs/', '/static/icon/colored/turnover.png', '80')
     menu.add('Уценка', '/GK/', '/static/icon/colored/low-price.png')
-    menu.add('Корзины', '/GK/basket/', '/static/icon/colored/basket.png')
+    menu.add('Склад', '/GK/warehouses/', '/static/icon/colored/basket.png')
     return render(request, page, 'Core/menu_builder.html', {'menu': menu.build()})
 
 

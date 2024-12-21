@@ -15,6 +15,8 @@ urlpatterns = [
     path('files/', include('Apps.files.urls')),
     # Инструменты
     path('tools/', include('Apps.tools.urls')),
-
+    # Склад 
+    path('warehouses/', include('Apps.warehouses.urls')),
+    
     
 ]

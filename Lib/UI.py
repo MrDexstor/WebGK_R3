@@ -6,7 +6,7 @@ def redirect(*args, **kwargs):
     
     
 def render(request, page_config, template_name, context={}, accept_level = 'user'):
-#accept_level = user | all | guest
+    #accept_level = user | all | guest
     context['page'] = page_config.build()
     
     if accept_level == 'user':

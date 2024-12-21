@@ -16,7 +16,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '127.0.0.2',
-    '192.168.10.23'
+    '192.168.100.33',
+    '10.246.46.177'
     ]
 
 
@@ -31,7 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'assets',
     'Core',
-    'WGKApi'
+    'WGKApi',
+    'WareHouse'
 ]
 
 MIDDLEWARE = [
