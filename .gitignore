@@ -3,3 +3,4 @@ media/
 develop/
 db.sqlite3
 upload/
+Core/config.py
