@@ -1,7 +1,9 @@
 echo 'Добро пожаловать в систему установки WebGK (R3)'
 echo ''
 echo 'Устанавливаю зависимости...'
-apt install screen python -y
+apt update
+apt upgrade
+apt install screen python redis -y
 echo 'Зависимости установлены'
 cd WebGK_R3
 echo 'Подтягиваю зависимости проекта...'
@@ -12,4 +14,4 @@ python script/prof_gen.py
 echo 'Конфигурирование завершено!'
 echo 'Формирую файлы для запуска систем...'
 cd 
-cp ~/WebGK_R3/script/RSGK_run.sh ~/run.sh 
+cp ~/WebGK_R3/script/rsgk.sh /data/data/com.termux/files/usr/bin/rsgk

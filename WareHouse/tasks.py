@@ -1,9 +1,6 @@
-from celery import shared_task
 from WareHouse.models import Product
 from ServerAPI.items import item__info
 
-
-@shared_task
 def syncGlobalStock(request, warehouse_id):
     products = Product.objects.filter(warehouse=warehouse_id)
 
