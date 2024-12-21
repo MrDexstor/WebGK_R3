@@ -45,7 +45,8 @@
     </style>
 {% endblock %}
 {% block main_content %}
-    <h1>Список полок в складе {{ warehouse.name }}</h1>
+    <a href="/GK/warehouses/{{ warehouse.id }}/shelves/create/" class="create-shelf-link">Создать полку</a>
+    <a href="/GK/warehouses/{{ warehouse.id }}/registry/" class="create-shelf-link">Реестр склада</a>
     <table class="custom-table">
         <tr>
             <th>ID</th>
@@ -62,5 +63,5 @@
         </tr>
         {% endfor %}
     </table>
-    <a href="/GK/warehouses/{{ warehouse.id }}/shelves/create/" class="create-shelf-link">Создать полку</a>
+
 {% endblock %}
