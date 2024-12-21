@@ -3,7 +3,9 @@ echo ''
 echo 'Устанавливаю зависимости...'
 apt update
 apt upgrade
-apt install screen python redis -y
+apt install screen 
+apt install python 
+apt install redis 
 echo 'Зависимости установлены'
 cd WebGK_R3
 echo 'Подтягиваю зависимости проекта...'
