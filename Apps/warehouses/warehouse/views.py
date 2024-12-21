@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from WareHouse.models import Warehouse, Shelf, Product
 from Lib.UI import render, redirect, Page
 from django.db.models import Sum
-
+from WareHouse.tasks import syncGlobalStock
 
 # Список полок в складе
 def shelf_list(request, warehouse_id):
@@ -62,3 +62,8 @@ def warehouse_products(request, warehouse_id):
     ]
     page = Page('Склад', 'Реестр склада', 'Полный список товаров в складе')
     return render(request, page,  'warehouses/warehouse_products.html', {'warehouse': warehouse, 'products': products_list})
+
+
+def updataGlobalStock(request, warehouse_id):
+    # Создать сплеш о синхронизации(Позже)
+    syncGlobalStock.delay(request, warehouse_id)

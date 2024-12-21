@@ -23,7 +23,7 @@ class Product(models.Model):
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, related_name='products')
 
     class Meta:
-        unique_together = ('shelf', 'warehouse')
+        unique_together = ('shelf', 'warehouse', 'plu')
 
     def __str__(self):
         return self.name

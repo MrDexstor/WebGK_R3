@@ -5,5 +5,6 @@ urlpatterns = [
     
     path('shelves/', views.shelf_list, ),
     path('shelves/create/', views.shelf_create),
-    path('registry/', views.warehouse_products)
+    path('registry/', views.warehouse_products),
+    path('update_global_stock/', views.updataGlobalStock)
 ]
