@@ -1,1 +1,1 @@
-python manage.py runserer 0.0.0.0:8097
+python manage.py runserver 0.0.0.0:8097

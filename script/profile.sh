@@ -7,7 +7,7 @@ apt install screen python redis -y
 echo 'Зависимости установлены'
 cd WebGK_R3
 echo 'Подтягиваю зависимости проекта...'
-pip install -r requirements.txt
+pip install django celery tzdata requests
 echo 'Зависимости проекта установлены'
 echo 'Начинаю процедуру конфигурирования WGK'
 python script/prof_gen.py
