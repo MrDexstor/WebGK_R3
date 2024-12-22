@@ -2,6 +2,8 @@ import json, requests
 from WebGK.settings import BASE_DIR
 from Core.config import BO_Url
 from Lib import BOm
+from Core.models import User 
+from ServerAPI import sessions
 
 def server_avalible(funct_name):
     def server_avalible_checker(function):
