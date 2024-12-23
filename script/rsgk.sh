@@ -15,9 +15,9 @@ case "$1" in
     echo 'Удалены устаревшие сессии'
     screen -dmS rsgk
     echo 'Создан рабочий стол сервера'
-    screen -S rsgk -X screen scripts/web.sh
-    screen -S rsgk -X screen scripts/redis.sh
-    screen -S rsgk -X screen scripts/celery.sh
+    screen -S rsgk -X screen script/web.sh
+    screen -S rsgk -X screen script/redis.sh
+    screen -S rsgk -X screen script/celery.sh
     echo 'Отданы все команды запуска'
     ;;
   stop)
