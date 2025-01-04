@@ -22,6 +22,10 @@ BO_Urls = 'http://bo-{bo_url_suffix}.x5.ru:8096'
 
 # Дирректория для хранения файлов загрузок
 FS_DIR = BASE_DIR / '{fs_dir_suffix}'
+
+# Наименование рабочей сети WiFi
+LAN_WIFI_SSID = '2xiaise3'
+
 #ДАЛЕЕ НИЧЕГО НЕ МЕНЯЕМ!!!
 # Обработчики настроек
 def BO_Url():

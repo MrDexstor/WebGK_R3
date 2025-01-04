@@ -8,7 +8,11 @@ Develop_Server_Connect = False
 BO_Urls = 'http://bo-O003.x5.ru:8096'
 
 # Дирректория для хранения файлов загрузок
-FS_DIR = BASE_DIR / 'uploads'
+FS_DIR = BASE_DIR / 'upload'
+
+# Наименование рабочей сети WiFi
+LAN_WIFI_SSID = 'Dmitr.Sorokovykh'
+
 #ДАЛЕЕ НИЧЕГО НЕ МЕНЯЕМ!!!
 # Обработчики настроек
 def BO_Url():

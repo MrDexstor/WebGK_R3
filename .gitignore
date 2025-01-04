@@ -4,3 +4,6 @@ develop/
 db.sqlite3
 upload/
 Core/config.py
+uploads/
+dump.rdb
+TODO.txt
