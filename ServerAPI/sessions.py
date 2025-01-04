@@ -8,7 +8,6 @@ def login(request):
     response = requests.get(url, headers=BOm.getHeader(request.user, True))
         
     if response.status_code == 200:
-        print(response.json())
         return response.json()
     else:
      #   Log.register(f'При запросе к "{url}" произошла ошибка с кодом {response.status_code}')

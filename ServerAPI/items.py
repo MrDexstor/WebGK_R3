@@ -1,12 +1,12 @@
 import requests
-from Lib.BO_Checks import server_avalible, session_check
+from Lib.BO_Checks import check_network, sessionCheck
 from Core.config import BO_Url
 from Lib import BOm
 
 from Lib.Tools import text_codec
 
-@server_avalible('item__info')
-@session_check
+@check_network('item__info')
+@sessionCheck
 def item__info(request, plu, info_level='deep'):
     if info_level == 'deep':
         url = f'{BO_Url()}/api/item?itemId={plu}&expand=itemIds%2CnextIncoming%2ClabelPrintingAllowed%2CassortmentPrintingAllowed%2CpriceTagPrintingAllowed%2CthirtyDaysAvgSales%2CcreateMarkdownAllowed%2CthirtyDaysSumWriteOff%2ClayoutsForMobilePrinter%2CitemAllowedForSale%2CcreateMarkableMarkdownWithoutDatamatrix%2CdefaultLayoutForMobilePrinter'
@@ -28,8 +28,8 @@ def item__info(request, plu, info_level='deep'):
     return data
     
    
-@server_avalible('item__movements')
-@session_check
+@check_network('item__movements')
+@sessionCheck
 def item__movements(request, plu):
     url = f'{BO_Url()}/api/item/{plu}/movements'
     response = requests.get(url, headers=BOm.getHeader(request.user))
@@ -43,8 +43,8 @@ def item__movements(request, plu):
     return data
 
 
-@server_avalible('item__plg')
-@session_check
+@check_network('item__plg')
+@sessionCheck
 def item__plg(request, plu):
     url = f'{BO_Url()}/api/item/{plu}/planogram'
     response = requests.get(url, headers=BOm.getHeader(request.user))
@@ -58,8 +58,8 @@ def item__plg(request, plu):
     return data
     
     
-@server_avalible('item__search')
-@session_check
+@check_network('item__search')
+@sessionCheck
 def search(request,  itemIds= None, nameContains= None, tradeGroup = None ,limit = None):
     url = f'{BO_Url()}/api/items'
     # Преобразование переменных

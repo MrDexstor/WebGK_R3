@@ -11,15 +11,28 @@ from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+        
+    # Логин
     login = models.CharField('Логин', unique=True, max_length=100)
+    # Фамилия Имя
     name = models.CharField(_('name'), max_length=30, blank=True)
+    # Пользователь активен?
     is_active = models.BooleanField(_('is_active'), default=True)
+    # Админ?
     is_staff = models.BooleanField(_('is_staff'), default=True)
+    # Код на бейдже(!!!УСТАРЕЛО!!!)
     login_key = models.CharField('Ключ входа по бейджу', max_length=30, blank=True, unique=False)
+    # Роль пользователя
     storeRole = models.CharField('Роль пользователя', max_length=100, default='none')
-    backoffice_login = models.CharField('Ключ BackOffice', max_length= 100, default='none')
-    bearer_token = models.CharField('Bearer Token пользователя', max_length=1000, default='none')
     
+    
+    #BackOffice
+    # Ключ для входа в BO
+    backoffice_login = models.CharField('Ключ BackOffice', max_length= 100, default='none')
+    # Toкен
+    bearer_token = models.CharField('Bearer Token пользователя', max_length=1000, default='none')
+    # Срок действия токена
+    expirationDateTime = models.CharField('Время жизни токена', max_length=70, default='01.10.2000 00:00:15')
     # НАСТРОЙКИ ПОЛЬЗОВАТЕЛЯ
     #Принтеры
     selected_stationary_printer = models.CharField('Выбранный стационарный принтер', max_length=100, blank=True, null=True)

@@ -1,20 +1,28 @@
 import json, requests, termux
 from WebGK.settings import BASE_DIR
-from Core.config import BO_Url
+from Core.config import BO_Url, LAN_WIFI_SSID
 from Lib import BOm
 from Core.models import User 
 from ServerAPI import sessions
+from datetime import datetime, timedelta
+
 
 def check_network(funct_name):
     def network_check(function):
         def wrapper(*args, **kwargs):
-            wifi = termux.API.generic(['termux-wifi-scaninfo'])[1]
+            attempt = 0
+            while attempt <=10:
+                attempt += 1
+                wifi = termux.API.generic(['termux-wifi-scaninfo'])[1]
+                if wifi != []:
+                    break
             if wifi == {'API_ERROR': 'Location needs to be enabled on the device'}:
                 result = json.load(open(BASE_DIR/f'dev/respone_templates/{funct_name}.json')) 
             else: 
                 lan_detected = False
                 for point in wifi:
-                    if point['ssid'] == 'Dmitr.Sorokovykh':
+                    print(point['ssid'])
+                    if point['ssid'] == LAN_WIFI_SSID:
                         lan_detected = True
                         break
                 
@@ -28,7 +36,7 @@ def check_network(funct_name):
     
 
 
-
+# НЕ ПОДДЕРЖИВАЕМЫЙ КОД(УДАЛИТСЯ СО СЛЕД РЕЛИЗОМ)
 def server_avalible(funct_name):
     def server_avalible_checker(function):
         def wrapper(*args, **kwargs):
@@ -45,13 +53,29 @@ def server_avalible(funct_name):
 
 def loginBO(request):
     account = User.objects.get(id=request.user.id)
-    account.bearer_token = sessions.login(request)['accessToken']['value']
+    response = sessions.login(request)
+    account.bearer_token = response['accessToken']['value']
+    account.expirationDateTime = response['accessToken']['expirationDateTime']
     account.save()
     
-    
+# НЕ ПОДДЕРЖИВАЕМЫЙ КОД(УДАЛИТСЯ СО СЛЕД РЕЛИЗОМ)
 def session_check(funct):
     def wrapper(request, *args, **kwargs):
         loginBO(request)
         result = funct(request, *args, **kwargs)
         return result
     return wrapper
+    
+    
+def sessionCheck(funct):
+    def wrapper(request, *args, **kwargs):
+        
+        currentDateTime = datetime.now()
+        expirationDateTime = datetime.strptime(request.user.expirationDateTime, '%d.%m.%Y %H:%M:%S')
+        expirationDateTime -= timedelta(seconds=10)
+        if currentDateTime > expirationDateTime:
+            loginBO(request)
+        result = funct(request, *args, **kwargs)
+        return result
+    return wrapper
+    
