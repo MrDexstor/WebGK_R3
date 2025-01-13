@@ -4,7 +4,7 @@ from Lib.UI import render, Page, MasterMenu
 def turnover(request):
     page = Page('Товарооборот', 'Товарооборот', 'Выполнение операций над товаром')
     menu = MasterMenu()
-    menu.add('Информация о товаре', '/GK/items/', '/static/icon/colored/search.png')
+    menu.add('Информация о товаре', '/GK/products/items/', '/static/icon/colored/search.png')
     menu.add('Возвраты, отгрузка, перемещение товаров', '/GK/', '/static/icon/colored/logistic.png')
     menu.add('Локальная инвентаризация', '/GK/inventory/local/', '/static/icon/colored/inventory.png', '80')
     menu.add('Списания', '/GK/write-offs/', '/static/icon/colored/turnover.png', '80')

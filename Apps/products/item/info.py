@@ -27,22 +27,28 @@ def item_datamatrix(request, plu):
     return render(request, 'items/item_datamatrix.html', 'Честный знак. Маркировка', {"item": item})
 '''
 def search(request):
+    #Это запрос
     if request.method == 'POST':
         article = request.POST.get('plu', None)
         nameContains = request.POST.get('item_name', None)
-        limit = request.POST.get('max-position', None)
-        # Запросить из системы данные 
-        sr_result = items.search(request, itemIds= article, nameContains=nameContains, limit = limit)
+        limit = request.POST.get('max-position', '50')
+        #sr_result = items.search(request, itemIds= article, nameContains=nameContains, limit = limit)
+        sr_result = []
         if len(sr_result) == 1:
+            # Если апишка вернула один конкретный товар
             return redirect(f'/GK/items/item/{ sr_result[0]['article'] }/info')
         elif len(sr_result) == 0:
-            return redirect('/GK/items/')
+            # Если товара нет (Не найдено ни олного товара по условиям)
+            page = Page('Информация о товаре', 'Информация о товаре', 'Произошла ошибка')
+            page.returnUrl('/GK/products/items/')
+            return render(request, page, 'products/item/item_not_found.html')
         else: 
+            # Если товары есть ,но их много
             page = Page('Поиск товара', 'Поиск товара', 'Найдены товары по вашему запросу')
             page.returnUrl('/GK/items/')
             return render(request, page, 'dm_style/items/search_result.html', {'items': sr_result})
-            
+    # Это генерация страницы
     else:
-        page = Page('Поиск товара', 'Поиск товара', 'Диалог поиска товаров')
+        page = Page('Информация о товаре', 'Информация о товаре', 'Поиск товара по ШК/PLU')
         page.returnUrl('/GK/')
         return render(request, page, 'products/item/search.html')
