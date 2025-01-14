@@ -69,6 +69,7 @@ class InventoryItem(models.Model):
     ]
     plu = models.CharField('PLU', max_length=50)
     name = models.CharField('Наименование', max_length=255)
+    product_group = models.ForeignKey(ProductGroup, on_delete=models.SET_NULL, related_name='products', null=True, blank=True)
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE, related_name='items')
     quantity_to_display = models.IntegerField('Количество к выкладке', null=True, blank=True)
     status = models.CharField('Статус обработки', max_length=50, choices=STATUS_CHOICES, default='pending')
