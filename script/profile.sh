@@ -8,7 +8,6 @@ apt install python
 apt install redis 
 echo 'Зависимости установлены'
 cd WebGK_R3
-termux-setup-storage
 echo 'Подтягиваю зависимости проекта...'
 pip install django celery tzdata requests
 echo 'Зависимости проекта установлены'
@@ -20,8 +19,6 @@ cd
 cp ~/WebGK_R3/script/rsgk.sh /data/data/com.termux/files/usr/bin/rsgk
 cd 
 cd WebGK_R3 
-cp script/apks/api.apk ~/storage/downloads/
-read
 python manage.py makemigrations
 python manage.py migrate
 echo 'Регистрация IT Соотрудника'
