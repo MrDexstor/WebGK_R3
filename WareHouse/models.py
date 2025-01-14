@@ -1,6 +1,6 @@
 from django.db import models
 from Core.models import User 
-
+from WGKApi.models import ProductGroup
 
 class Warehouse(models.Model):
     name = models.CharField('Наименование склада',max_length=255)
@@ -27,6 +27,7 @@ class Shelf(models.Model):
 class Product(models.Model):
     plu = models.CharField('PLU', max_length=50, unique=False)
     name = models.CharField('Наименованеи', max_length=255)
+    product_group = models.ForeignKey(ProductGroup, on_delete=models.SET_NULL, related_name='products', null=True, blank=True)
     stock_on_shelf = models.IntegerField('Остаток на полке')
     global_stock = models.IntegerField('Остаток в GK')
     shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, related_name='products')
