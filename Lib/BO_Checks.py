@@ -13,19 +13,16 @@ def check_network(funct_name):
             attempt = 0
             while attempt <=10:
                 attempt += 1
-                wifi = termux.API.generic(['termux-wifi-scaninfo'])[1]
-                if wifi != []:
+                wifi = termux.API.generic(['termux-wifi-connectioninfo'])[1]
+                if wifi != {}:
                     break
             if wifi == {'API_ERROR': 'Location needs to be enabled on the device'}:
                 result = json.load(open(BASE_DIR/f'dev/respone_templates/{funct_name}.json')) 
             else: 
                 lan_detected = False
-                for point in wifi:
-                    print(point['ssid'])
-                    if point['ssid'] == LAN_WIFI_SSID:
-                        lan_detected = True
-                        break
-                
+                if wifi['ssid'] == LAN_WIFI_SSID:
+                    lan_detected = True
+                    
                 if lan_detected:
                     result = function(*args, **kwargs)
                 else:
