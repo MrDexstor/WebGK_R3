@@ -2,9 +2,9 @@ from django.shortcuts import  get_object_or_404, redirect
 from django.http import JsonResponse
 from WareHouse.models import Shelf, Product
 from django.views.decorators.csrf import csrf_exempt
-import json
+import json, re
 from ServerAPI.items import item__info
-
+from WGKApi.models import ProductGroup
 
 # Удаление товара
 @csrf_exempt
@@ -80,7 +80,17 @@ def add_product(request, shelf_id):
             existing_product.stock_on_shelf += int(quantity)
             existing_product.save()
         else:
-            Product.objects.create(plu=item['article'], name=item['fullName'], stock_on_shelf=quantity, global_stock=item['stock'], shelf=shelf, warehouse=shelf.warehouse)
+            match = re.match(r"([A-Za-z]+)(\d+)", item['merchandiseGroupId'])
+            if not match:
+                pass
+                #Тут должно слать нафиг,если с кодом товарно группы сто то не так
+            try:
+                product_group = ProductGroup.objects.get(product_type=match.group(1), group_code=match.group(2))
+            except ProductGroup.DoesNotExist:
+                prd_grp = ProductGroup(product_type=match.group(1), group_code=match.group(2), name = item['merchandiseGroupName'])
+                prd_grp.save()
+                product_group = ProductGroup.objects.get(product_type=match.group(1), group_code=match.group(2))
+            Product.objects.create(plu=item['article'], name=item['fullName'], stock_on_shelf=quantity, global_stock=item['stock'], shelf=shelf, warehouse=shelf.warehouse, product_group=product_group)
 
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
