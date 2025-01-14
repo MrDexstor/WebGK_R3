@@ -37,7 +37,7 @@ def createPackDoc(inventory_id):
         plu = group['plu']
         name = group['name']
         total_stock = group['total_stock']
-
+        product_group = group['product_group']
         # Получить все записи Product для данного PLU и warehouse
         accommodations = products.filter(plu=plu)
 
@@ -46,6 +46,7 @@ def createPackDoc(inventory_id):
             plu=plu,
             name=name,
             inventory=inventory,
+            product_group=product_group,
             quantity_to_display=None,
             status='pending',
             total_stock=total_stock
