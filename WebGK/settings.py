@@ -20,7 +20,8 @@ ALLOWED_HOSTS = [
     '10.246.46.181', #XIASE
     '172.25.32.190', #ZEROTIER
     '192.168.43.233',
-    '10.0.0.1'
+    '10.0.0.1', #In VPN 
+    '92.63.177.185', #TimeWeb server IP (for all connect)
     ]
 
 
