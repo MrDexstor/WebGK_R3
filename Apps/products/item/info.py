@@ -36,7 +36,7 @@ def search(request):
         sr_result = []
         if len(sr_result) == 1:
             # Если апишка вернула один конкретный товар
-            return redirect(f'/GK/items/item/{ sr_result[0]['article'] }/info')
+            return redirect(f"/GK/items/item/{ sr_result[0]['article'] }/info")
         elif len(sr_result) == 0:
             # Если товара нет (Не найдено ни олного товара по условиям)
             page = Page('Информация о товаре', 'Информация о товаре', 'Произошла ошибка')
