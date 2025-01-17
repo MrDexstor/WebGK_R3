@@ -1,11 +1,11 @@
 import requests
-from Lib.BO_Checks import check_network, sessionCheck
+from Lib.BO_Checks import server_avalible, sessionCheck
 from Core.config import BO_Url
 from Lib import BOm
 
 from Lib.Tools import text_codec
 
-@check_network('item__info')
+@server_avalible('item__info')
 @sessionCheck
 def item__info(request, plu, info_level='deep'):
     if info_level == 'deep':
@@ -28,7 +28,7 @@ def item__info(request, plu, info_level='deep'):
     return data
     
    
-@check_network('item__movements')
+@server_avalible('item__movements')
 @sessionCheck
 def item__movements(request, plu):
     url = f'{BO_Url()}/api/item/{plu}/movements'
@@ -43,7 +43,7 @@ def item__movements(request, plu):
     return data
 
 
-@check_network('item__plg')
+@server_avalible('item__plg')
 @sessionCheck
 def item__plg(request, plu):
     url = f'{BO_Url()}/api/item/{plu}/planogram'
@@ -58,7 +58,7 @@ def item__plg(request, plu):
     return data
     
     
-@check_network('item__search')
+@server_avalible('item__search')
 @sessionCheck
 def search(request,  itemIds= None, nameContains= None, tradeGroup = None ,limit = None):
     url = f'{BO_Url()}/api/items'

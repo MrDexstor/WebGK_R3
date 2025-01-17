@@ -1,4 +1,4 @@
-import json, requests, termux
+import json, requests#, termux
 from WebGK.settings import BASE_DIR
 from Core.config import BO_Url, LAN_WIFI_SSID
 from Lib import BOm
@@ -6,7 +6,7 @@ from Core.models import User
 from ServerAPI import sessions
 from datetime import datetime, timedelta
 
-
+'''
 def check_network(funct_name):
     def network_check(function):
         def wrapper(*args, **kwargs):
@@ -31,7 +31,7 @@ def check_network(funct_name):
         return wrapper
     return network_check
     
-
+'''
 
 # НЕ ПОДДЕРЖИВАЕМЫЙ КОД(УДАЛИТСЯ СО СЛЕД РЕЛИЗОМ)
 def server_avalible(funct_name):

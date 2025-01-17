@@ -1,11 +1,11 @@
 import requests
-from Lib.BO_Checks import check_network, sessionCheck
+from Lib.BO_Checks import server_avalible, sessionCheck
 from Core.config import BO_Url
 from Lib import BOm
 from datetime import datetime
 
 
-@check_network('write-offs-list')
+@server_avalible('write-offs-list')
 @sessionCheck
 def getList(request):
     url = f'{BO_Url()}/api/write-offs'
@@ -13,7 +13,7 @@ def getList(request):
     return response.json()
 
 
-@check_network('write-offs-docinfo')
+@server_avalible('write-offs-docinfo')
 @sessionCheck
 def offsData(request, docId):
     url = f'{BO_Url()}/api/write-offs/{docId}'
@@ -21,7 +21,7 @@ def offsData(request, docId):
     return response.json()
     
 
-@check_network('write-offs-positions')
+@server_avalible('write-offs-positions')
 @sessionCheck
 def positions(request, docId):
     url = f'{BO_Url()}/api/write-offs/{docId}/positions'
