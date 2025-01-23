@@ -1,4 +1,4 @@
-import requests
+import requests, json
 from celery import shared_task
 from SyncModule.libs import ping_external_server, generate_changes_file
 from Core.config import REMOTE_ADDRES_SERVER
@@ -32,9 +32,9 @@ def InitSyncProcedure():
 
 
 @shared_task
-def AcceptanceOfChanges(filename):
+def AcceptanceOfChanges(filepath):
     #Проверить доступность
-    serverAvailable = ping_external_server()
+#    serverAvailable = ping_external_server()
     
     with open(filepath, 'r') as file:
         data = json.load(file)
