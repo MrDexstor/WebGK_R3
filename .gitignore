@@ -7,3 +7,4 @@ Core/config.py
 uploads/
 dump.rdb
 TODO.txt
+dbwsync/
