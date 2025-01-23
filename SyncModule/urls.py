@@ -4,5 +4,5 @@ from SyncModule.sync import InitSync, receive_file
 
 urlpatterns = [
     path('syncInit/', InitSync),
-    path('accept_file/', receive_file)
+    path('file_acceptance/', receive_file)
     ]

@@ -24,6 +24,7 @@ def InitSyncProcedure():
             if response.status_code == 200:
                 print('[DBS] Файл синхронизации отправлен')
             else:
+                print(response.json)
                 print('[DBS] Что то сломалось...')
     else:
         print('[DBS] Файл синхронизации не был отправлен')
