@@ -47,11 +47,12 @@ def AcceptanceOfChanges(filepath):
         pass
 
     for change in changes:
+        id = change["id"]
         model_name = change["model_name"]
         record_id = change["record_id"]
         change_type = change["change_type"]
         new_state = change["new_state"]
-
+        new_state.pop('id', None)
         # Получаем модель по имени
         model = apps.get_model(app_label='WareHouse', model_name=model_name)
 
@@ -70,4 +71,4 @@ def AcceptanceOfChanges(filepath):
             model.objects.filter(id=record_id).delete()
 
         # Добавляем ID примененного изменения в список
-        applied_changes.append(record_id)
+        applied_changes.append(id)
