@@ -2,6 +2,7 @@ import requests
 from celery import shared_task
 from SyncModule.libs import ping_external_server, generate_changes_file
 from Core.config import REMOTE_ADDRES_SERVER
+from django.apps import apps
 
 
 @shared_task
@@ -34,4 +35,39 @@ def InitSyncProcedure():
 def AcceptanceOfChanges(filename):
     #Проверить доступность
     serverAvailable = ping_external_server()
-    pass
+    
+    with open(filepath, 'r') as file:
+        data = json.load(file)
+        
+    applied_changes = []
+    changes = data.get("changes", [])
+    if data['info']['type'] == 'init':
+        pass
+    elif data['info']['type'] == 'response_g-l':
+        pass
+
+    for change in changes:
+        model_name = change["model_name"]
+        record_id = change["record_id"]
+        change_type = change["change_type"]
+        new_state = change["new_state"]
+
+        # Получаем модель по имени
+        model = apps.get_model(app_label='WareHouse', model_name=model_name)
+
+        # В зависимости от типа изменения, выполняем соответствующие действия
+        if change_type == 'insert':
+            # Создаем новую запись
+            model.objects.create(id=record_id, **new_state)
+        elif change_type == 'update':
+            # Обновляем существующую запись
+            instance = model.objects.get(id=record_id)
+            for field, value in new_state.items():
+                setattr(instance, field, value)
+            instance.save()
+        elif change_type == 'delete':
+            # Удаляем запись
+            model.objects.filter(id=record_id).delete()
+
+        # Добавляем ID примененного изменения в список
+        applied_changes.append(record_id)
