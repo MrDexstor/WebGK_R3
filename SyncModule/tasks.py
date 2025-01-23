@@ -14,7 +14,7 @@ def InitSyncProcedure():
 
     # Отправить файл
     if serverAvailable:
-        remote_server_url = REMOTE_ADDRESS_SERVER + '/dbw/file_acceptance/'
+        remote_server_url = REMOTE_ADDRES_SERVER + '/dbw/file_acceptance/'
 
         # Открываем файл в бинарном режиме
         with open(changeFileUrl, 'rb') as file:
