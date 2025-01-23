@@ -1,7 +1,7 @@
 import requests, json
 from celery import shared_task
 from SyncModule.libs import ping_external_server, generate_changes_file
-from Core.config import REMOTE_ADDRESS_SERVER
+from Core.config import REMOTE_ADDRES_SERVER
 from django.apps import apps
 
 @shared_task
