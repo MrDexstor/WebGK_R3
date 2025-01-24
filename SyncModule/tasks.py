@@ -39,10 +39,6 @@ def AcceptanceOfChanges(filepath):
 
     applied_changes = []
     changes = data.get("changes", [])
-    if data['info']['type'] == 'init':
-        pass
-    elif data['info']['type'] == 'response_g-l':
-        pass
 
     for change in changes:
         id = change["id"]
@@ -75,3 +71,28 @@ def AcceptanceOfChanges(filepath):
 
         # Добавляем ID примененного изменения в список
         applied_changes.append(id)
+    applied_changes_response = data.get("applied_changes", [])
+    if applied_changes_response != []:
+        for id_r in applied_changes_response:
+            print(f'Change {id_r} aplied')
+    
+    
+    changeFileUrl = generate_changes_file('response', applied_changes)
+    
+    serverAvailable = ping_external_server() 
+    
+    if serverAvailable:
+        remote_server_url = REMOTE_ADDRES_SERVER + '/dbw/file_acceptance/'
+
+        # Открываем файл в бинарном режиме
+        with open(changeFileUrl, 'rb') as file:
+            # Отправляем файл на удаленный сервер
+            response = requests.post(remote_server_url, files={'file': file})
+
+            if response.status_code == 200:
+                print('[DBS] Файл синхронизации отправлен')
+            else:
+                print(response.json())
+                print('[DBS] Что-то сломалось...')
+    else:
+        print('[DBS] Файл синхронизации не был отправлен')

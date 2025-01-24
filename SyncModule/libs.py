@@ -5,7 +5,7 @@ from Core.config import DBSync
 from SyncModule.models import ChangeLog
 
 
-def generate_changes_file(FiteIter):
+def generate_changes_file(FiteIter, applied_changes):
     # Генерируем имя файла
     timestamp = datetime.now().strftime("%d-%m-%Y_%H-%M")
     filename = f"{timestamp}.json"
@@ -26,7 +26,8 @@ def generate_changes_file(FiteIter):
         "changes": changes_data,
         "info": {
             "type": FiteIter
-        }
+        },
+        "applied_changes": applied_changes
     }, indent=4, default=datetime_handler)
 
     # Сохраняем изменения в файл
