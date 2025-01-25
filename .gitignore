@@ -7,6 +7,3 @@ Core/config.py
 uploads/
 dump.rdb
 TODO.txt
-.venv
-config.py
-
