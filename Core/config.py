@@ -16,7 +16,7 @@ LAN_WIFI_SSID = 'Dmitr.Sorokovykh'
 # НАСТОЙКИ TELEGRAM БОТА
 
 # Токен
-TELEGRAM_BOT_TOKEN = ''
+TELEGRAM_BOT_TOKEN = '7841667070:AAFw6m3IjHAwQmPFsQegoLBrfk-5iBV3_-o'
 
 
 #ДАЛЕЕ НИЧЕГО НЕ МЕНЯЕМ!!!
