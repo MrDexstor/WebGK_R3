@@ -10,5 +10,6 @@ urlpatterns = [
     path('', main),
     path('GK/', include('Apps.urls')),
     path('gkapi/', include('WGKApi.urls')),
+    path('dbw/', include('SyncModule.urls')),
     path('admin/', admin.site.urls),
 ]

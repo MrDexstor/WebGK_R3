@@ -14,14 +14,22 @@ SECRET_KEY = 'django-insecure-uf669o^ew@)1d#ss2^hy!)8y(bgweq3fob8ps#p+4%#%jfx0-n
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.4', #LOCAL
-    '127.0.0.2', #LOCAL
-    '192.168.100.33', #WIFI
-    '10.246.46.181', #XIASE
-    '172.25.32.190', #ZEROTIER
-    '192.168.43.233',
-    '10.0.0.1', #In VPN 
-    '92.63.177.185', #TimeWeb server IP (for all connect)
+    # Local(127.0.0.X)
+    '127.0.0.1',
+    '127.0.0.2',
+    
+    # VPN
+    '10.0.0.1',
+    '10.0.0.2',
+    '10.0.0.3',
+    
+    # Work
+    '10.246.46.181', #TCD Cruise
+
+    # Ethernet 
+    '92.63.177.185',
+    
+    
     ]
 
 
@@ -38,6 +46,7 @@ INSTALLED_APPS = [
     'Core',
     'WGKApi',
     'WareHouse',
+    'SyncModule',
     'TelegramBot'
 ]
 
