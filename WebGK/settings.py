@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'assets',
     'Core',
     'WGKApi',
-    'WareHouse'
+    'WareHouse',
+    'TelegramBot'
 ]
 
 MIDDLEWARE = [

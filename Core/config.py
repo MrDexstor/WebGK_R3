@@ -13,6 +13,12 @@ FS_DIR = BASE_DIR / 'upload'
 # Наименование рабочей сети WiFi
 LAN_WIFI_SSID = 'Dmitr.Sorokovykh'
 
+# НАСТОЙКИ TELEGRAM БОТА
+
+# Токен
+TELEGRAM_BOT_TOKEN = '7841667070:AAFw6m3IjHAwQmPFsQegoLBrfk-5iBV3_-o'
+
+
 #ДАЛЕЕ НИЧЕГО НЕ МЕНЯЕМ!!!
 # Обработчики настроек
 def BO_Url():

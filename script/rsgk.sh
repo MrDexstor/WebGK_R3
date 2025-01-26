@@ -18,6 +18,7 @@ case "$1" in
     screen -S rsgk -X screen script/web.sh
     screen -S rsgk -X screen script/redis.sh
     screen -S rsgk -X screen script/celery.sh
+    screen -S rsgk -X screen script/bot.sh
     echo 'Отданы все команды запуска'
     ;;
   stop)
@@ -27,6 +28,7 @@ case "$1" in
     echo 'Удаление сессии screen'
     screen -wipe
     echo 'Сервер остановлен и сессия удалена'
+    
     ;;
   *)
     echo "Неверный аргумент: $1"
