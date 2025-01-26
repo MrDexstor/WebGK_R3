@@ -2,7 +2,7 @@ import logging
 from asgiref.sync import sync_to_async
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import CommandHandler, MessageHandler, filters, ConversationHandler, CallbackContext
-from TelegramBot.models import User
+from TelegramBot.models import TGUser
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -13,7 +13,7 @@ NAME, LAST_NAME, POSITION, SAP_NUMBER, CONFIRM = range(5)
 
 async def start(update: Update, context: CallbackContext) -> int:
     user_id = update.message.from_user.id
-    if await sync_to_async(User.objects.filter(user_id=user_id).exists)():
+    if await sync_to_async(TGUser.objects.filter(user_id=user_id).exists)():
         await update.message.reply_text('Приветствую. Используй /help для помощи!')
         return ConversationHandler.END
     else:
@@ -74,7 +74,7 @@ async def get_sap_number(update: Update, context: CallbackContext) -> int:
 async def confirm(update: Update, context: CallbackContext) -> int:
     if update.message.text.lower() == 'да':
         user_data = context.user_data
-        await sync_to_async(User.objects.create)(
+        await sync_to_async(TGUser.objects.create)(
             user_id=update.message.from_user.id,
             first_name=user_data['first_name'],
             last_name=user_data['last_name'],
