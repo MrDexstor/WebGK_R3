@@ -2,3 +2,5 @@ django
 tzdata
 celery
 requests
+python-telegram-bot
+asgiref

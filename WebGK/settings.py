@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'Core',
     'WGKApi',
     'WareHouse',
-    'SyncModule'
+    'SyncModule',
+    'TelegramBot'
 ]
 
 MIDDLEWARE = [
