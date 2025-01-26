@@ -1,4 +1,4 @@
 django
 tzdata
 celery
-request
+requests

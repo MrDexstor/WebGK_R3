@@ -1,4 +1,5 @@
-import requests, json
+import requests
+import json
 from celery import shared_task
 from SyncModule.libs import ping_external_server, generate_changes_file
 from Core.config import REMOTE_ADDRES_SERVER
